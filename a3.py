@@ -244,8 +244,17 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-    if(src[0] == None):
-        return "I don't understand"
+    if not src:
+        return ["I don't understand"]
+
+    for pattern, action in pa_list:
+        matched_words = match(pattern, src)
+        if matched_words is not None:
+            result = action(matched_words)
+            return result if result else ["No answers"]
+
+    return ["I don't understand"]
+
 
 
 def query_loop() -> None:
