@@ -206,7 +206,11 @@ def title_by_actor(matches: List[str]) -> List[str]:
             result.append(get_title(movie))
     return result
 
-
+def is_bad_movie(curr: List[str]) -> List[str]:
+    movieInput = curr[1]
+    if(movieInput == "Fred"):
+        return ["This movie is horrible."]
+    return ["This movie isn't bad."]
 
 # dummy argument is ignored and doesn't matter
 def bye_action(dummy: List[str]) -> None:
@@ -228,6 +232,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("who acted in %"), actors_by_title),
     (str.split("when was % made"), year_by_title),
     (str.split("in what movies did % appear"), title_by_actor),
+    (str.split("is % a good movie"), is_bad_movie),
     (["bye"], bye_action),
 ]
 
@@ -343,5 +348,7 @@ if __name__ == "__main__":
     assert sorted(
         search_pa_list(["what", "movies", "were", "made", "in", "2020"])
     ) == sorted(["No answers"]), "failed search_pa_list test 3"
-
+    assert sorted(
+        is_bad_movie(["is", "Fred", "a", "good", "movie"])
+    ) == sorted(["This movie is horrible."]), "failed is_bad_movie test"
     print("All tests passed!")
