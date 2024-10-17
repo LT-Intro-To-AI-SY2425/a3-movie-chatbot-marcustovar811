@@ -435,4 +435,17 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "spike lee",
         ],
     ),
+    (
+        "the great gatsby",
+        "baz luhrmann",
+        2013,
+        [
+            "leonardo dicaprio",
+            "tobey maguire",
+            "carey mulligan",
+            "joel edgerton",
+            "isla fisher",
+            "jason clarke",
+        ],
+    ),
 ]
